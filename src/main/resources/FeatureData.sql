@@ -1,0 +1,16 @@
+INSERT INTO feature (feature_name) VALUES ('Half Stitch');
+INSERT INTO feature (feature_name) VALUES ('Whole Stitch' );
+INSERT INTO feature (feature_name) VALUES ('Trail'  );
+INSERT INTO feature (feature_name) VALUES ('Rose Ground' );
+INSERT INTO feature (feature_name) VALUES ('Winkie Pins'  );
+INSERT INTO feature (feature_name) VALUES ('Fans'  );
+INSERT INTO feature (feature_name) VALUES ('Plaits' );
+INSERT INTO feature (feature_name) VALUES ('Tallies' );
+INSERT INTO feature (feature_name) VALUES ('Picots' );
+INSERT INTO feature (feature_name) VALUES ('Peas' );
+INSERT INTO feature (feature_name) VALUES ('Lozenges' );
+INSERT INTO feature (feature_name) VALUES ('Snowflakes' );
+INSERT INTO feature (feature_name) VALUES ('Ground' );
+INSERT INTO feature (feature_name) VALUES ('Tape' );
+INSERT INTO feature (feature_name) VALUES ('Cloth Stitch');
+INSERT INTO feature (feature_name) VALUES ('Gimp' );
