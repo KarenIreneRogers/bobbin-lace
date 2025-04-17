@@ -111,7 +111,14 @@ class BobbinLaceController {
 		
 		return bobbinLaceService.retrieveImageById(styleId, imageId);
 	}
-	
+	// Retrieve image using different URL 4/17/25
+	@GetMapping("/image/{imageId}")
+	public ImageData retrieveImageByIdIgnoreStyle(@PathVariable Long imageId) {
+		log.info("Retrieving image with ID={}, ignoring style", imageId);
+		
+		return bobbinLaceService.retrieveImageWithJustImageId(imageId);
+		
+	}
 	// Retrieve all images for a style ????  Haven't found a good comparison for this.  This has problems (5:45 4/4) ???  MIght be fixed.  Check carefully
 	@GetMapping("/style/{styleId}/image")
 	public List<ImageData> retrieveAllImagesForAStyle(@PathVariable Long styleId) {

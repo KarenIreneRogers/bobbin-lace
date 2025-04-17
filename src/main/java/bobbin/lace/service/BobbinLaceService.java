@@ -194,4 +194,15 @@ public class BobbinLaceService {
 		imageDao.delete(image);
 	}
 
+	public ImageData retrieveImageWithJustImageId(Long imageId) {
+		Image image = findImageByJustId(imageId);
+		return new ImageData(image);
+	}
+
+	private Image findImageByJustId(Long imageId) {
+		Image image = imageDao.findById(imageId)
+				.orElseThrow( () -> new NoSuchElementException("Image with ID=" + imageId + " was not found."));
+		return image;
+	}
+
 }

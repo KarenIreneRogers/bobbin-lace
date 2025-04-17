@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import bobbin.lace.entity.Feature;
-import bobbin.lace.entity.Image;
 import bobbin.lace.entity.Style;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ public class StyleData {
 	private int oldestRecordedDate;
 	private int typicalNumberOfBobbins;
 	private String pillowStyle;
-	private Set<ImageData> images = new HashSet<>();
+//	private Set<ImageData> images = new HashSet<>();
 	private Set<FeatureData> features = new HashSet<>();
 	
 	
@@ -32,9 +31,9 @@ public class StyleData {
 		this.typicalNumberOfBobbins = style.getTypicalNumberOfBobbins();
 		this.pillowStyle = style.getPillowStyle();
 		
-		for (Image image: style.getImages()) {
-			this.images.add(new ImageData(image));
-		}
+//		for (Image image: style.getImages()) {
+//			this.images.add(new ImageData(image));
+//		}
 		
 		for (Feature feature : style.getFeatures()) {
 	//		this.features.add(new FeatureData(feature));
@@ -52,9 +51,9 @@ public class StyleData {
 		style.setTypicalNumberOfBobbins(typicalNumberOfBobbins);
 		style.setPillowStyle(pillowStyle);
 		
-		for(ImageData imageData : images) {
-			style.getImages().add(imageData.toImage());
-		}
+	//	for(ImageData imageData : images) {
+	//		style.getImages().add(imageData.toImage());
+	//	}
 		
 
 		for(FeatureData featureData : features) {
