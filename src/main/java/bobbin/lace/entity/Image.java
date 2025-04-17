@@ -1,6 +1,7 @@
 package bobbin.lace.entity;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,19 +18,16 @@ public class Image {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long imageId;
 	
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
+
 	private String imageName;
 	
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	private String imageLocation;
 	
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToOne       //(cascade = CascadeType.ALL)
-	@JoinColumn(name = "style_id", nullable = true)
+	@ManyToOne       (cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "style_id", nullable = false)
 	private Style style;
 
 }

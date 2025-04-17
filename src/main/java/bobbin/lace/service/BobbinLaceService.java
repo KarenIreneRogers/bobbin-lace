@@ -124,14 +124,11 @@ public class BobbinLaceService {
 	public ImageData saveImage(Long styleId, ImageData imageData) {
 	
 		Style style = findStyleById(styleId);	
-		
 		Long imageId = imageData.getImageId();
 		Image image = findOrCreateImage(styleId, imageId);
 
 		image = copyImageFields(image, imageData);
-
-	//	style.getImages().add(image);
-		
+		style.getImages().add(image);
 		image.setStyle(style);
 		
 		return new ImageData( imageDao.save(image));

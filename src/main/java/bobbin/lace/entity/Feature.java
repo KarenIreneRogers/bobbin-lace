@@ -18,13 +18,9 @@ import lombok.ToString;
 public class Feature {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	
 	private Long featureId;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
+
 	private String featureName;
 	
 	

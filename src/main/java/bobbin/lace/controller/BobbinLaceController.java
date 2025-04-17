@@ -65,9 +65,9 @@ class BobbinLaceController {
 	}
 	// Retrieving all styles works fine - also gives all features.
 	
-	// Check to see if style-feature is fixed and also image are deleted appropriately ???  
-	// Style-feature is updated appropriately when style is deleted.
 	
+	
+	// Delete a style works fine - also deletes all rows of style_feature and images associated with the style 4/16/25
 	@DeleteMapping("/style/{styleId}")
 	public Map<String,String> deleteStyle(@PathVariable Long styleId) {
 		log.info("Deleting style Id={}",styleId);
@@ -95,7 +95,7 @@ class BobbinLaceController {
 		
 	}
 	
-	// Modify image ???  Use update petPark for park
+	// Modify image.  This works 4/16/25
 	@PutMapping("/style/{styleId}/image/{imageId}")
 	public ImageData updateImage(@PathVariable Long styleId,
 			@PathVariable Long imageId, @RequestBody ImageData imageData) {
@@ -120,7 +120,7 @@ class BobbinLaceController {
 		return bobbinLaceService.retrieveAllImagesForAStyle(styleId);	
 	}
 	
-	// Delete image (without deleting style or features ???
+	// Delete image (without deleting style or features works fine 4/16/25
 	
 	@DeleteMapping("/style/{styleId}/image/{imageId}")
 	public Map<String, String> deleteOneImage(@PathVariable Long styleId, @PathVariable Long imageId) {

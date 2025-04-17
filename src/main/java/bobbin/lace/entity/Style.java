@@ -22,20 +22,15 @@ public class Style {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long styleId;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
+
 	private String styleName;
-	@EqualsAndHashCode.Exclude	
-	@ToString.Exclude
+
 	private String countryOfOrigin;
-	@EqualsAndHashCode.Exclude	
-	@ToString.Exclude
+
 	private int oldestRecordedDate;
-	@EqualsAndHashCode.Exclude	
-	@ToString.Exclude
+
 	private int typicalNumberOfBobbins;
-	@EqualsAndHashCode.Exclude	
-	@ToString.Exclude
+
 	private String pillowStyle;
 	
 	@EqualsAndHashCode.Exclude
