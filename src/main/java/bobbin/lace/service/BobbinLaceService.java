@@ -35,12 +35,8 @@ public class BobbinLaceService {
 
 	@Transactional(readOnly = false)
 	public StyleData saveStyle(StyleData styleData) {
-//		Set<Feature> features = featureDao.findAllByFeatureIn(styleData.getFeatures());
-//		Set<Feature> features = featureDao.findAllByFeatureIn(styleData.getFeatures());
-		
 		Set<String> featureNames = extractFeatureNames(styleData);
 		Set<Feature> features = featureDao.findByFeatureNameIn(featureNames);
-//		Set<Feature> features = styleData.getFeatures();
 		
 		Long styleId = styleData.getStyleId();
 		Style style = findOrCreateStyle(styleId);
@@ -48,12 +44,6 @@ public class BobbinLaceService {
 		style = copyStyleFields(styleData, style);
 		
 		style.setFeatures(features);
-		
-		
-//		for(Feature feature : features) {
-//			feature.getStyles().add(style);
-//			style.getFeatures().add(feature);
-//		}
 		
 		return new StyleData(styleDao.save(style));
 	}
@@ -70,7 +60,6 @@ public class BobbinLaceService {
 
 	private Style findOrCreateStyle(Long styleId) {
 		Style style;
-		
 		if(Objects.isNull(styleId)) {
 			style = new Style();
 		} else {
@@ -95,8 +84,6 @@ public class BobbinLaceService {
 		return style;
 	}
 	
-	
-	
 	@Transactional(readOnly = true)
 	public StyleData retrieveStyleById(Long styleId) {
 		Style style = findStyleById(styleId);
@@ -116,10 +103,6 @@ public class BobbinLaceService {
 		styleDao.delete(style);
 	}
 
-	
-	//  ***************  Styles above, Images below *************** //
-	
-	
 	@Transactional(readOnly = false)
 	public ImageData saveImage(Long styleId, ImageData imageData) {
 	
@@ -146,8 +129,6 @@ public class BobbinLaceService {
 	}
 
 	private Image findImageById(Long styleId, Long imageId) {
-		// Note that findImageById returns an Optional.  If the Optional is empty a NoSuchElementException is thrown.
-		
 		Image image = imageDao.findById(imageId)
 				.orElseThrow( () -> new NoSuchElementException("Image with ID=" + imageId + " was not found."));
 		
@@ -159,7 +140,6 @@ public class BobbinLaceService {
 	}
 
 	private Image copyImageFields(Image image, ImageData imageData) {
-//		image.setImageId(imageData.getImageId());
 		image.setImageName(imageData.getImageName());
 		image.setImageLocation(imageData.getImageLocation());
 		return image;
@@ -167,13 +147,11 @@ public class BobbinLaceService {
 
 	public ImageData retrieveImageById(Long styleId, Long imageId) {
 		findStyleById(styleId);
-		Image image = findImageById(styleId, imageId);  // This is a bit different from petPark due to inclusion of styleId  Check this!!!!
-		
+		Image image = findImageById(styleId, imageId);  
 		if(image.getStyle().getStyleId() != styleId) {  
 			throw new IllegalStateException("Image with ID=" + imageId + " "
 					+ "is not associated with style with ID=" + styleId);
 		}
-		
 		return new ImageData(image);
 	}
 
@@ -190,7 +168,6 @@ public class BobbinLaceService {
 
 	public void deleteImageById(Long styleId, Long imageId) {
 		Image image = findImageById(styleId, imageId);
-		
 		imageDao.delete(image);
 	}
 
@@ -203,6 +180,21 @@ public class BobbinLaceService {
 		Image image = imageDao.findById(imageId)
 				.orElseThrow( () -> new NoSuchElementException("Image with ID=" + imageId + " was not found."));
 		return image;
+	}
+
+	public List<FeatureData> retrieveAllFeatures() {
+		return featureDao.findAll().stream().map(FeatureData:: new).toList();
+	}
+
+	public List<StyleData> retrieveAllStylesWhichHaveFeatures() {
+		List<Style> styles = styleDao.findAll();
+		List<StyleData> styleResponse = new LinkedList<>();
+		for(Style style : styles) {
+			if( ! style.getFeatures().isEmpty()) {
+			styleResponse.add(new StyleData(style));
+			}	
+		}
+		return styleResponse;
 	}
 
 }

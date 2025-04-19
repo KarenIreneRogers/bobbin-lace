@@ -18,16 +18,12 @@ import lombok.ToString;
 public class Feature {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private Long featureId;
 
 	private String featureName;
-	
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToMany(mappedBy = "features", cascade = CascadeType.PERSIST)
 	private Set<Style> styles = new HashSet<>();
-	
-
 }

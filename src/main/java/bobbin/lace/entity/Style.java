@@ -47,7 +47,4 @@ public class Style {
 		inverseJoinColumns = @JoinColumn(name = "feature_id")
 	)
 	private Set<Feature> features = new HashSet<>();
-	
-	
-	
 }
